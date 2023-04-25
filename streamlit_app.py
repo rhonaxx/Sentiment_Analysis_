@@ -30,25 +30,16 @@ def app():
     stopwords_list.remove('not')
     tokenizer = ToktokTokenizer()
 
-    st.title("Sentiment Analysis on Dyeing of hair")      
-    st.subheader("(c) 2023 Rhona Mae Taccad BSCS-3A")
-
-    st.subheader('Sentiment Analysis')
-    st.write("Sentiment analysis is the process of determining the emotional tone of a \
-    piece of text. TextBlob provides two properties for sentiment analysis: polarity and \
-    subjectivity. \n\nPolarity refers to the degree to which the text expresses a positive \
-    or negative sentiment. Polarity is represented as a float value between -1.0 and 1.0, \
-    where -1.0 represents a completely negative sentiment, 0.0 represents a neutral \
-    sentiment, and 1.0 represents a completely positive sentiment./n/nSubjectivity, on the \
-    other hand, refers to the degree to which the text expresses a subjective or objective \
-    viewpoint. \n\nSubjectivity is also represented as a float value between 0.0 and 1.0, where \
-    0.0 represents a completely objective viewpoint and 1.0 represents a completely \
-    subjective viewpoint.")
+    st.title('Sentiment Analyis on the Future of both Humanity and Artificial Intellignence in our Society')
+    st.subheader('(c) Briones, Mathew Adriane I. | BSCS - 3A')
     
+    st.subheader('What is Sentiment Analysis?')
+    st.write('Sentiment analysis is the process of determining the emotional tone of a piece of text. TextBlob provides two properties for sentiment analysis: polarity and subjectivity.')
+    st.write('Polarity refers to the degree to which the text expresses a positive or negative sentiment. Polarity is represented as a float value between -1.0 and 1.0, where -1.0 represents a completely negative sentiment, 0.0 represents a neutral sentiment, and 1.0 represents a completely positive sentiment. Subjectivity, on the other hand, refers to the degree to which the text expresses a subjective or objective viewpoint.')
+    st. write('Subjectivity is also represented as a float value between 0.0 and 1.0, where 0.0 represents a completely objective viewpoint and 1.0 represents a completely subjective viewpoint.')
+
     st.subheader('Survey Topic')
-    st.write('We conducted a survey among CS students and ask if they agree or disagree that \
-    AI will soon make CS professionals obsolete and briefly explain their answer.  \
-    The Disagree responses are labeled 0 and the Agree are labeled as 1.')
+    st.write('We conducted a survey among the general public who ought to have convictions or doubts on the future between humanity and AI. They were asked for their opinion about the topic through either agreeing or disgreeing on the topic, along with briefly explaining their corresponding answer. Agree was labeled as 1 while Disagree was be labeled as 0 to align with the properties of Sentiment Analysis.')
     
     with st.echo(code_location='below'):
         
@@ -112,13 +103,19 @@ def app():
             return text
         
         if st.button('Load Dataset'):  
-            df = pd.read_csv('Dyeing_ofhair.csv')
+            df = pd.read_csv('sa_responses-1.csv')
+
+            #df = df.reindex(columns=['Please leave a brief explanation as to why you answered so.', 'Do you believe in a future in which humans will be at the apex of society and Artifical Intelligence (AI) and every aspect thereof will serve to aid humanity?'])
+
+            #df.rename(columns={'Please leave a brief explanation as to why you answered so.' : 'text', 'Do you believe in a future in which humans will be at the apex of society and Artifical Intelligence (AI) and every aspect thereof will serve to aid humanity?' : 'label'}, inplace = True)
+
+            df['label'].replace({"Agree" : 1, "Disagree" : 0}, inplace = True)
 
             #remember this very useful function to randomly rearrange the dataset
             train = shuffle(df)
             
             
-            st.write('There were 40 responses and we display them in the table below.')
+            st.write('There were 20 responses and we display them in the table below.')
             st.dataframe(train, use_container_width=True)
    
             st.write('Dataset shape: ')
@@ -286,5 +283,5 @@ def app():
                 st.write("Error: Unable to generate CSV file.")
 
 # run the app
-if __name__ == "__main__":
+if _name_ == "_main_":
     app()

@@ -30,8 +30,8 @@ def app():
     stopwords_list.remove('not')
     tokenizer = ToktokTokenizer()
 
-    st.title("Sentiment Analysis on Dyeing of hair")      
-    st.subheader("(c) 2023 Rhona Mae Taccad BSCS-3A")
+    st.title("Sentiment Analysis on AI Making CS Professionals Obsolete")      
+    st.subheader("(c) 2023 Louie F. Cervantes, M.Eng.")
 
     st.subheader('Sentiment Analysis')
     st.write("Sentiment analysis is the process of determining the emotional tone of a \
@@ -118,7 +118,7 @@ def app():
             train = shuffle(df)
             
             
-            st.write('There were 40 responses and we display them in the table below.')
+            st.write('There were 20 responses and we display them in the table below.')
             st.dataframe(train, use_container_width=True)
    
             st.write('Dataset shape: ')
